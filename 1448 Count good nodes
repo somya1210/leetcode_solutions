@@ -1,0 +1,24 @@
+ int count(TreeNode* root,int mx)
+    {
+        int ans=0;
+        if(!root)
+            return 0;
+        if(root->val>=mx)
+        { ans++;
+            mx=root->val;
+        }
+        
+        int leftc=count(root->left,mx);
+        int rightc=count(root->right,mx);
+        return ans+leftc+rightc;
+    }
+    int goodNodes(TreeNode* root) {
+        if(!root)
+            return 0;
+    
+       int ans=count(root,root->val);
+       return ans;
+    }
+    // so this problem is easy if one can visualise recursion is keeping track of the max ,i.e if we are changing the path then max is also changing.
+    // this is a variation of preorder traversal
+    // here first we are checking for our current node and then recurring for its left and right child
