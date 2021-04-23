@@ -1,0 +1,28 @@
+vector<int> largestValues(TreeNode* root) {
+     //variation of level order traversal
+        queue<TreeNode*>q;
+        if(!root)
+            return {};
+        q.push(root);
+        vector<int>ans;
+        while(!q.empty())
+        {
+            int temp=INT_MIN;
+            int n=q.size();
+            while(n--)
+            {
+                TreeNode* top=q.front();
+                q.pop();
+                if(temp<top->val)
+                    temp=top->val;
+                if(top->left)
+                    q.push(top->left);
+                if(top->right)
+                    q.push(top->right);
+                
+            }
+            ans.push_back(temp);
+        }
+        return ans;
+    }
+    
