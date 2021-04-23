@@ -1,0 +1,25 @@
+ Node* connect(Node* root) 
+    {
+        queue<Node*>q;
+        if(!root)
+            return nullptr;
+        q.push(root);
+        while(!q.empty())
+        { int n=q.size();
+         while(n--)
+         {Node* top=q.front();q.pop();
+          if(n==0)
+              top->next=nullptr;
+          else
+              top->next=q.front();
+          if(top->left)
+              q.push(top->left);
+          if(top->right)
+              q.push(top->right);
+              
+         }}
+
+        return root;
+     }
+     // do it with the help of level order traversal
+     
