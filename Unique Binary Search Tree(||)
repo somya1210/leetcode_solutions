@@ -1,0 +1,44 @@
+Honestly I was not able to solve the problem in one go. I was able to get the idea to solve the problem but wasn't able to implement it.
+Firstly try to solve the problem Unique Binary Search Tree
+So here is my approach:
+
+We need to generate a BST which means that left child will contain the node value lesser than root and right child will contain the value greater than the value of root.
+And also I have n number of choices for the root node.
+So i will iterate from 1 to n and will generate left and rightsubtree recursivly.
+Then create a tree from all the possible left and right subtree an then finally add to the solution list.
+Also do not forget to add the base condition.
+Base condition will be when my start>end
+So here is my code:
+ vector<TreeNode*> generate(int start,int end)
+    { vector<TreeNode*>list;
+        if(start>end)
+        {
+            list.push_back(nullptr);
+            return list;
+        }
+        for(int i=start;i<=end;i++)
+        {
+           vector<TreeNode*>leftsubtree=generate(start,i-1);
+           vector<TreeNode*>rightsubtree=generate(i+1,end);
+            for(int j=0;j<leftsubtree.size();j++)
+            {
+                TreeNode* left=leftsubtree[j];
+                for(int k=0;k<rightsubtree.size();k++)
+                {
+                    TreeNode* right=rightsubtree[k];
+                    TreeNode* node=new TreeNode(i);
+                    node->left=left;
+                    node->right=right;
+                  list.push_back(node);
+                }
+            }
+           
+            
+        }
+     return list;
+    }
+    vector<TreeNode*> generateTrees(int n) {
+   // binary search tree left node contain ->(1,i-1)and right child contain (i+1,n)
+     vector<TreeNode*>ans=generate(1,n);   
+        return ans;
+    }
