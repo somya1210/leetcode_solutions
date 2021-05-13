@@ -1,0 +1,18 @@
+ int countPairs(struct Node* head1, struct Node* head2, int x) {
+        // Code here
+        map<int,int>map;
+        Node* temp=head2;
+        while(temp)
+        {
+            map[temp->data]=1; temp=temp->next;
+        }
+        Node *temp1=head1; int c=0;
+        while(temp1)
+        { int data=x-temp1->data;
+            if(map.find(data)!=map.end())
+             c++;
+         temp1=temp1->next;
+        }
+        return c;
+        
+    }
